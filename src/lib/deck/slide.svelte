@@ -1,8 +1,8 @@
 <script lang="ts">
-	export let id: string | null = null
-	export let animate = false
-	export let restart = false
-	export let hidden = false
+	export let id: string | null = null;
+	export let animate = false;
+	export let restart = false;
+	export let hidden = false;
 </script>
 
 <section

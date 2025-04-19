@@ -1,10 +1,10 @@
 <script lang="ts">
-  import Slides from "$lib/deck/slides.svelte";
-  import "../app.postcss";
+	import Slides from '$lib/deck/slides.svelte';
+	import '../app.css';
 </script>
 
 <svelte:head>
-  <title>Mutation Testing</title>
+	<title>Tracing the Slowdown</title>
 </svelte:head>
 
 <Slides />
