@@ -1,114 +1,120 @@
 <script lang="ts">
-  const { data } = $props();
   import "../app.css";
 </script>
 
-<div class="container mx-auto p-4">
-  <h1 class="text-3xl font-bold mb-6 text-orange-600 text-center">
-    Todo List App
-  </h1>
+<div
+  class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-orange-50 to-white p-4"
+>
+  <div class="max-w-4xl w-full text-center">
+    <h1 class="text-5xl md:text-6xl font-bold text-orange-600 mb-6">
+      Todo List App
+    </h1>
 
-  {#if data.error}
-    <div
-      class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded"
-    >
-      {data.error}
-    </div>
-  {:else}
-    <div class="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-      {#each data.users as user, index}
-        <div
-          class="border border-gray-300 rounded-lg p-5 bg-white shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden relative"
+    <p class="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
+      A simple and elegant todo list application to help you manage your tasks
+      efficiently.
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+      <a
+        href="/overview"
+        class="px-8 py-4 bg-orange-600 text-white font-medium rounded-lg shadow-lg hover:bg-orange-700 transition-colors duration-300 flex items-center justify-center"
+      >
+        <span>View Todo List</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5 ml-2"
+          viewBox="0 0 20 20"
+          fill="currentColor"
         >
-          <!-- User header with subtle gradient background -->
-          <div
-            class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-orange-400 to-orange-600 opacity-70"
-          ></div>
-
-          <!-- User info with avatar -->
-          <div class="flex items-center mb-4 mt-2">
-            <div
-              class="w-12 h-12 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 opacity-90 flex items-center justify-center text-white font-bold text-xl mr-3"
-            >
-              {user.username.charAt(0).toUpperCase()}
-            </div>
-            <div>
-              <h2 class="text-xl font-semibold text-gray-800">
-                {user.username}
-              </h2>
-              <p class="text-sm text-gray-600">{user.email}</p>
-            </div>
-          </div>
-
-          <!-- Todo count badge -->
-          <div class="mb-4">
-            <span
-              class="inline-block bg-orange-100 text-orange-800 text-xs font-medium px-2.5 py-0.5 rounded-full"
-            >
-              {user.todos.length} todos
-            </span>
-          </div>
-
-          <!-- Todo list -->
-          <div class="space-y-3 max-h-80 overflow-y-auto pr-2">
-            {#each user.todos as todo}
-              <div
-                class="flex items-start gap-3 p-3 rounded-lg {todo.completed
-                  ? 'bg-green-50'
-                  : 'bg-gray-50'} hover:bg-opacity-80 transition-colors duration-200"
-              >
-                <div class="pt-1">
-                  <input
-                    type="checkbox"
-                    checked={todo.completed}
-                    disabled
-                    class="h-4 w-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500 {todo.completed
-                      ? 'bg-green-500 border-green-500'
-                      : ''}"
-                  />
-                </div>
-                <div class="flex-1">
-                  <p
-                    class="font-medium {todo.completed
-                      ? 'text-green-700 line-through'
-                      : 'text-gray-800'}"
-                  >
-                    {todo.title}
-                  </p>
-                  {#if todo.description}
-                    <p class="text-sm text-gray-600 mt-1">{todo.description}</p>
-                  {/if}
-                </div>
-              </div>
-            {/each}
-          </div>
-        </div>
-      {/each}
+          <path
+            fill-rule="evenodd"
+            d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </a>
     </div>
-  {/if}
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+      <div class="bg-white p-6 rounded-lg shadow-md">
+        <div
+          class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mb-4"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 text-orange-600"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+            />
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Organize Tasks</h3>
+        <p class="text-gray-600">
+          Keep all your tasks in one place and organize them efficiently.
+        </p>
+      </div>
+
+      <div class="bg-white p-6 rounded-lg shadow-md">
+        <div
+          class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mb-4"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 text-orange-600"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Track Progress</h3>
+        <p class="text-gray-600">
+          Monitor your progress and see what tasks you've completed.
+        </p>
+      </div>
+
+      <div class="bg-white p-6 rounded-lg shadow-md">
+        <div
+          class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mb-4"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 text-orange-600"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M13 10V3L4 14h7v7l9-11h-7z"
+            />
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Boost Productivity</h3>
+        <p class="text-gray-600">
+          Stay focused and increase your productivity with our simple interface.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="mt-16 text-gray-500 text-sm">
+    <p>© 2024 Todo List App. All rights reserved.</p>
+  </footer>
 </div>
-
-<style>
-  :global(body) {
-    background-color: #f8f9fa;
-  }
-
-  /* Custom scrollbar for todo lists */
-  :global(.space-y-3::-webkit-scrollbar) {
-    width: 6px;
-  }
-
-  :global(.space-y-3::-webkit-scrollbar-track) {
-    background: #f1f1f1;
-    border-radius: 10px;
-  }
-
-  :global(.space-y-3::-webkit-scrollbar-thumb) {
-    background: #fcd5b4;
-    border-radius: 10px;
-  }
-
-  :global(.space-y-3::-webkit-scrollbar-thumb:hover) {
-    background: #fbbf8c;
-  }
-</style>
