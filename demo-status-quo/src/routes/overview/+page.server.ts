@@ -7,7 +7,7 @@ const pool = new Pool({
     host: 'localhost',
     database: 'todo_db',
     password: 'todo_password',
-    port: 5432,
+    port: 5433,
 });
 
 export async function load() {

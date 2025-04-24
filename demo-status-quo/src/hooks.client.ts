@@ -8,10 +8,10 @@ import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-proto';
 
 const provider = new WebTracerProvider({
     resource: resourceFromAttributes({
-        'service.name': 'demo-status-quo',
+        'service.name': 'demo-todo-app',
     }),
 
-    spanProcessors: [new SimpleSpanProcessor(new OTLPTraceExporter({url: 'http://localhost:5173/jaeger'}))],
+    spanProcessors: [new SimpleSpanProcessor(new OTLPTraceExporter({url: 'http://localhost:3000/jaeger'}))],
 });
 
 provider.register({
