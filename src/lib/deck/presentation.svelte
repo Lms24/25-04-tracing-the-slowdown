@@ -5,30 +5,31 @@
 	import Otel from '../../icons/otel.svelte';
 	import Sentry from '../../icons/sentry.svelte';
 	import Svelte from '../../icons/svelte.svelte';
-  import Code from './code.svelte';
+	import Code from './code.svelte';
 	import Slide from './slide.svelte';
+	import Slides from './slides.svelte';
 </script>
 
 <Slide>
-	<div class="flex flex-row w-full justify-between ">
+	<div class="flex flex-row w-full justify-between">
 		<div class="flex flex-col text-start items-center justify-center">
 			<div class="flex-col text-start">
-        <h3 class="!normal-case w-full">Hi 👋 I'm Lukas</h3>
-        <p>
-          Software Engineer at <a
-            href="https://sentry.io/welcome"
-            class="inline-flex flex-row items-center">Sentry <Sentry color="#ff6900" size={48} /></a
-          >
-        </p>
-        <div class="flex flex-col gap-2 items-start text-[0.6em]">
-          <p>About me:</p>
-          <ul>
-            <li>Aviation ✈️</li>
-            <li>Archery 🏹</li>
-            <li>Svelte 🧡</li>
-          </ul>
-        </div>
-      </div>
+				<h3 class="!normal-case w-full">Hi 👋 I'm Lukas</h3>
+				<p>
+					Software Engineer at <a
+						href="https://sentry.io/welcome"
+						class="inline-flex flex-row items-center">Sentry <Sentry color="#ff6900" size={48} /></a
+					>
+				</p>
+				<div class="flex flex-col gap-2 items-start text-[0.6em]">
+					<p>About me:</p>
+					<ul>
+						<li>Aviation ✈️</li>
+						<li>Archery 🏹</li>
+						<li>Svelte 🧡</li>
+					</ul>
+				</div>
+			</div>
 		</div>
 		<div class="flex flex-col items-center">
 			<img src="/ls-2.jpg" class="rounded-full w-64" alt="Lukas Stracke" />
@@ -62,88 +63,98 @@
 
 <Slide>
 	<div class="flex flex-col w-full justify-between items-start">
-    <h2>Let's talk about Tracing!</h2>
+		<h2>Let's talk about Tracing!</h2>
 		<div class="flex flex-row items-start justify-between w-full">
 			<ol>
 				<li>Tracing with OpenTelemetry</li>
 				<li>Observability in ESM</li>
-				<li>How to get started</li>
-				<li>What Svelte can do better</li>
+				<li>Tracing in SvelteKit</li>
+				<li>What SvelteKit can do better</li>
 			</ol>
-      <Otel size={220}></Otel>
+			<Otel size={220} />
 		</div>
 	</div>
 </Slide>
 
 <Slide>
-  <div class="flex flex-col w-full justify-between items-start">
-    <h2>What is Tracing?</h2>
+	<div class="flex flex-col w-full justify-between items-center">
+		<h2>Spans</h2>
 
-    <p>Spans: Measure duration of operations</p>
-    <Code id="code" noescape={true} lines={'2,5'}>
-          {`
-    function getUser(id) {
+		<Code id="code" noescape={true} lines="true">
+			{`
+    export const load = ({params}) => {
+      const res = await fetch(\`api/users/\${params.id}\`);
+      return res.json();
+    }
+          `}
+		</Code>
+	</div>
+</Slide>
+
+<Slide>
+	<div class="flex flex-col w-full justify-between items-center">
+		<h2>Spans</h2>
+
+		<Code id="code" noescape={true} lines={'2,5'}>
+			{`
+    export const load = ({params}) => {
       return startSpan({name: 'getUser'}, async() => {
-        const res = await fetch(\`api/users/\${id}\`)
+        const res = await fetch(\`api/users/\${params.id}\`)
         return res.json()
       })
     }
           `}
-        </Code>
-  </div>
+		</Code>
+	</div>
 </Slide>
 
 <Slide>
-  <div class="flex flex-col w-full justify-between items-start">
-    <h2>What is Tracing?</h2>
-      Traces: Collection of related spans
-
-      TODO: Image of trace span waterfall
-  </div>
-</Slide>
-
-
-<Slide>
-  <div class="flex flex-col w-full justify-between items-start">
-    <h2>What is Tracing?</h2>
-      Distributed: Tracing across services
-      TODO: Image of distributed trace
-  </div>
+	<div class="flex flex-col w-full justify-between items-center">
+		<h2>Traces</h2>
+	</div>
 </Slide>
 
 <Slide>
-  <div class="flex flex-col w-full justify-between items-start">
-    <h2>OpenTelemetry</h2>
-    <p class="text-start">Common Standard for Observability: Terminology, APIs, SDKs, Instrumentation</p>
-  </div>
+	<div class="flex flex-col w-full justify-between items-center">
+		<h2>Distributed Traces</h2>
+	</div>
 </Slide>
 
 <Slide>
-  <div class="flex flex-col w-full justify-between items-start">
-    <h2>Observability in ESM</h2>
-    <div class="flex flex-row items-start justify-between w-full">
-      <div>
-        
-      </div>
-  </div>
+	<div class="flex flex-col w-full justify-between items-start">
+		<h2>OpenTelemetry</h2>
+		<div class="flex flex-row items-start justify-between w-full">
+			<p class="text-start w-[50%]">
+				Standard for Observability: Terminology, SDKs, APIs, Instrumentation
+			</p>
+			<Otel size={200} />
+		</div>
+	</div>
 </Slide>
 
 <Slide>
-  <div class="flex flex-col w-full justify-between items-start">
-    <h2>Otel in SvelteKit</h2>
-    <div class="flex flex-row items-start justify-between w-full">
-      <div>
-        
-      </div>
-  </div>
+	<h3>Let's add OTel to SvelteKit!</h3>
 </Slide>
 
 <Slide>
-  <div class="flex flex-col w-full justify-between items-start">
-    <h2>How SvelteKit can do better</h2>
-    <div class="flex flex-row items-start justify-between w-full">
-      <div>
-        
-      </div>
-  </div>
+	<div class="flex flex-col w-full justify-between items-start">
+		<h2>Instrumentation in ESM</h2>
+		<div class="flex flex-row items-start justify-between w-full" />
+	</div></Slide
+>
+
+<Slide>
+	<div class="flex flex-col w-full justify-between items-start">
+		<h2>Otel in SvelteKit</h2>
+		<div class="flex flex-row items-start justify-between w-full">Demo Time</div>
+	</div>
 </Slide>
+
+<Slide>
+	<div class="flex flex-col w-full justify-between items-start">
+		<h2>How SvelteKit can do better</h2>
+		<div class="flex flex-row items-start justify-between w-full">
+			<div />
+		</div>
+	</div></Slide
+>

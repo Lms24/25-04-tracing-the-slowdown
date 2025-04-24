@@ -5,7 +5,11 @@
 </script>
 
 <pre data-id={id || null} class="border border-gray-200 rounded-lg !bg-gray-800 p-1">
-  <code data-trim data-line-numbers={lines || null} data-noescape={noescape || null} class="language-typescript">
+  <code
+		data-trim
+		data-line-numbers={lines || null}
+		data-noescape={noescape || null}
+		class="language-javascript">
     <slot />
   </code>
 </pre>
