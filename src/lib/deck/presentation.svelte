@@ -8,7 +8,6 @@
 	import Bash from './bash.svelte';
 	import Code from './code.svelte';
 	import Slide from './slide.svelte';
-	import Slides from './slides.svelte';
 	import Span from './Span.svelte';
 </script>
 
