@@ -5,6 +5,7 @@
 	import Otel from '../../icons/otel.svelte';
 	import Sentry from '../../icons/sentry.svelte';
 	import Svelte from '../../icons/svelte.svelte';
+	import Bash from './bash.svelte';
 	import Code from './code.svelte';
 	import Slide from './slide.svelte';
 	import Slides from './slides.svelte';
@@ -237,25 +238,25 @@
 	<div class="flex flex-col gap-4">
 		<h3>Step 1: Dependencies</h3>
 		<div class="flex flex-row items-center justify-center gap-8">
-			<Code lines="true" noescape={true} language="bash" class="text-sm" fullScreen={false}>
+			<Bash noescape={true} class="text-sm" fullScreen={false}>
 				{`
-npm install \\
-# Core packages
-@opentelemetry/api \\
-@opentelemetry/exporter-trace-otlp-proto \\
-@opentelemetry/resources \\
-@opentelemetry/instrumentation \\
+$ npm install \\
+  # Core packages
+  @opentelemetry/api \\
+  @opentelemetry/exporter-trace-otlp-proto \\
+  @opentelemetry/resources \\
+  @opentelemetry/instrumentation \\
 
-# Web SDK
-@opentelemetry/sdk-trace-web \\
-@opentelemetry/instrumentation-document-load \\
-@opentelemetry/instrumentation-fetch \\
+  # Web SDK
+  @opentelemetry/sdk-trace-web \\
+  @opentelemetry/instrumentation-document-load \\
+  @opentelemetry/instrumentation-fetch \\
 
-# Node SDK
-@opentelemetry/sdk-node \\
-@opentelemetry/auto-instrumentations-node
+  # Node SDK
+  @opentelemetry/sdk-node \\
+  @opentelemetry/auto-instrumentations-node
 `}
-			</Code>
+			</Bash>
 			<img src="/thisisfine.webp" class="w-80 h-auto rounded-lg" alt="This is fine meme" />
 		</div>
 	</div></Slide
@@ -352,13 +353,12 @@ await waitForAllMessagesAcknowledged();
 
 <Slide>
 	<h3>Step 4: Build and Start</h3>
-	<Code lines="true" noescape={true} language="bash" class="text-sm">
+	<Bash noescape={true} class="text-sm">
 		{`
-npm run build
+$ npm run build
 
-node --import ./instrument.server.mjs ./build/index.js
-		`}
-	</Code>
+$ node --import ./instrument.server.mjs ./build/index.js`}
+	</Bash>
 </Slide>
 
 <Slide>
@@ -472,26 +472,25 @@ register("import-in-the-middle/hook.mjs", import.meta.url);
 <Slide>
 	<h3>Customization hook registration</h3>
 	<p>Must happen before any import:</p>
-	<Code lines="" noescape={true} language="bash" class="text-md">
+	<Bash noescape={true} class="text-md">
 		{`
-node \\
+$ node \\
   # evaluated first
   --import ./instrument.server.mjs \\
   # loaded and evaluated after
   ./build/index.js`}
-	</Code>
+	</Bash>
 </Slide>
 
 <Slide>
 	<h3>Customization hook registration</h3>
 	<p>Must happen before any import:</p>
-	<Code lines="true" noescape={true} language="bash" class="">
+	<Bash noescape={true}>
 		{`
-node --import ./instrument.server.mjs ./build/index.js
-# or
-NODE_OPTIONS="--import ./instrument.server.mjs"
-		`}
-	</Code>
+$ node --import ./instrument.server.mjs ./build/index.js
+  #or
+$ NODE_OPTIONS="--import ./instrument.server.mjs"`}
+	</Bash>
 	<p>❌ not always possible (e.g. Vercel, Netlify)</p>
 </Slide>
 
