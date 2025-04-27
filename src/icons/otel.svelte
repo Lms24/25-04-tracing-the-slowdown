@@ -4,10 +4,13 @@
 	let { class: className, size }: Omit<IconProps, 'color'> = $props();
 </script>
 
-<svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="-12.70 -12.70 1024.40 1024.40"
-    class={className}
-    width={size}
-    height={size}
+<svg
+	xmlns="http://www.w3.org/2000/svg"
+	role="img"
+	viewBox="-12.70 -12.70 1024.40 1024.40"
+	class={className}
+	width={size}
+	height={size}
 	><style>
 		svg {
 			enable-background: new 0 0 1000 1000;
