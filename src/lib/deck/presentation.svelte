@@ -55,7 +55,7 @@
 
 <Slide>
 	<div class="flex flex-col w-full justify-between items-center">
-		<h2>Svelte Summit is Coming! 👀</h2>
+		<h2>Sentry @ Svelte Summit</h2>
 	</div>
 </Slide>
 
@@ -226,6 +226,15 @@
 			</p>
 			<Otel size={200} />
 		</div>
+	</div>
+</Slide>
+
+<Slide>
+	<div class="flex flex-col w-full justify-between items-center">
+		<h2>Instrumentation</h2>
+		<p>
+			A piece of code that observes other code.
+		</p>
 	</div>
 </Slide>
 
@@ -470,7 +479,7 @@ register("import-in-the-middle/hook.mjs", import.meta.url);
 
 <Slide>
 	<h3>Customization hook registration</h3>
-	<p>Must happen before any import:</p>
+	<p>Must happen before app start:</p>
 	<Bash noescape={true} class="text-md">
 		{`
 $ node \\
@@ -483,7 +492,7 @@ $ node \\
 
 <Slide>
 	<h3>Customization hook registration</h3>
-	<p>Must happen before any import:</p>
+	<p>Must happen before app start:</p>
 	<Bash noescape={true}>
 		{`
 $ node --import ./instrument.server.mjs ./build/index.js
@@ -504,7 +513,7 @@ $ NODE_OPTIONS="--import ./instrument.server.mjs"`}
 		lines="true"
 		noescape={true}
 		language="javascript"
-		class="text-sm"
+		class="text-md"
 		filename="src/instrumentation.server.ts"
 	>
 		{`
@@ -535,24 +544,43 @@ import('instrument.server').then(() => {
 </Slide>
 
 <Slide>
-	<h3>2. Emit <code>diagnostics_channel</code> messages</h3>
-	<p>For example:</p>
-	<ul>
-		<li>Request start/end (`handle` hooks)</li>
-		<li>`load` function calls</li>
-		<li>API route handlers</li>
-		<li>page rendering</li>
-	</ul>
-</Slide>
+	<div class="flex flex-col gap-4">
+		<h3>2. Emit <code>diagnostics_channel</code> messages</h3>
+		<div class="flex flex-row gap-12">
+			<ul>
+				<li>Request start & end</li>
+				<li><code>load</code> function calls</li>
+				<li>Server route handlers</li>
+				<li>Page rendering</li>
+			</ul>
+			<Code
+				lines="true"
+				noescape={true}
+				language="javascript"
+				class="text-sm w-fit"
+				fullScreen={false}
+			>
+				{`
+import channel from 'node:diagnostics_channel';
+
+const load = channel('sveltekit:load');
+
+load.publish({ type: 'start', {route: '/todos'} });
+load.publish({ type: 'end', {route: '/todos'} });
+		`}
+			</Code>
+		</div>
+	</div></Slide
+>
 
 <Slide>
 	<h3>Let's make this happen!</h3>
 	<ol class="text-md">
 		<li>
 			<a
-				href="https://github.com/Lms24/kit/pull/3"
+				href="https://github.com/sveltejs/kit/pull/13776"
 				class="inline-flex flex-row items-center justify-center gap-2"
-				><Github size={40} color="orange" /> Support <code>instrumentation.server.ts</code></a
+				><Github size={40} color="darkorange" /> Support <code>instrumentation.server.ts</code></a
 			>
 		</li>
 		<li>
@@ -573,9 +601,17 @@ import('instrument.server').then(() => {
 <Slide>
 	<div class="flex flex-col items-center justify-center">
 		<h2>Thanks!</h2>
-		<div class="bg-white rounded-lg p-1 flex flex-row items-center justify-center">
-			<img src="/qr-slides.png" class="w-40 h-48 m-1!" alt="QR Code" />
+		<div class="flex flex-row items-center justify-center gap-20">
+			<div class="flex flex-col items-center justify-center  ">
+				<img src="/qr-raffle.png" class="w-56 h-auto m-1! bg-white rounded-lg p-4" alt="QR Code for Sentry raffle" />
+				<p class=" text-[1.5rem]">Sentry Raffle</p>
+			</div>
+			<div class="flex flex-col items-center justify-center ">
+				<img src="/qr-slides.png" class="w-56 h-auto m-1! bg-white rounded-lg p-4" alt="QR Code for slides and material" />
+				<p class=" text-[1.5rem]">Slides & Demo</p>
+
+			</div>
 		</div>
-		<p>Feedback welcome and much appreciated!</p>
+		<p>Come say 👋 at the Sentry Booth!</p>
 	</div>
 </Slide>
